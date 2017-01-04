@@ -1,0 +1,3 @@
+platform: honeywell
+username: !secret honeywell_username
+password: !secret honeywell_password
