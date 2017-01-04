@@ -1,0 +1,327 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: PanterHome
+  # Location required to calculate the time the sun rises and sets
+  latitude: 51.826632
+  longitude: 5.843140
+  elevation: 30
+  unit_system: metric
+
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+
+# Discover some devices automatically
+# discovery:
+
+http:
+  api_password: !secret http_password 
+
+light:
+  platform: hue
+  host: 192.168.2.1
+
+recorder:
+  purge_days: 4
+
+updater:
+
+
+
+# Enables the frontend
+frontend:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Allows you to issue voice commands from the frontend
+# conversation:
+
+# Track the sun
+sun:
+
+# Show links to resources in log and frontend
+# introduction:
+
+# View all events in a logbook
+logbook:
+
+# My honeywell thermostat.
+# climate:
+#    platform: honeywell
+#    username: !secret honeywell_username
+#    password: !secret honeywell_password
+
+mysensors:
+  gateways:
+    #- device: "/dev/ttyMySensorsGateway"
+    - device: "/dev/ttyUSB0"
+      persistence_file: "/home/pi/.homeassistant/mysensors_usb.json"
+  #debug: true
+  persistence: true
+  version: "1.5"
+
+scene powerview:
+  platform: hunterdouglas_powerview
+  address: 192.168.2.4
+
+scene:
+  - name: nachtlamp bo
+    entities:
+      light.nachtlamp_bo:
+        state: on
+        xy_color: [0.667,0.319]
+        brightness: 50
+  - name: table on
+    entities:
+      light.eettafel_1:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+      light.eettafel_2:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+  - name: table full on
+    entities:
+      light.eettafel_1:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 254
+      light.eettafel_2:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 254
+  - name: living on
+    entities:
+      light.hue_lamp_2:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+      light.hue_lamp_3:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+  - name: bar on
+    entities:
+      light.bar_lamp:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+  - name: hoeklamp on
+    entities:
+      light.hoeklamp:
+        state: on
+        xy_color: [0.5134,0.4149]
+        brightness: 150  
+  - name: tv light on
+    entities:
+      light.tv_lamp:
+        state: on
+        xy_color: [0.5144,0.4148]
+        brightness: 87
+  - name: all off
+    entities:
+      group.living: off
+      group.dining: off
+      group.bar: off
+
+script:
+  lights_on_sunset:
+    alias: Turn lights on if sun has set
+    sequence:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - service: scene.turn_on
+        entity_id: 
+          - scene.bar_on
+          - scene.hoeklamp_on
+          - scene.tv_light_on
+        
+
+automation:
+  - alias: Set night light when triggered on
+    trigger:
+      platform: state
+      entity_id: light.nachtlamp_bo
+      from: 'off'
+      to: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.nachtlamp_bo
+
+  - alias: Set hoeklamp when triggered on
+    trigger:
+      platform: state
+      entity_id: light.hoeklamp
+      from: 'off'
+      to: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.hoeklamp_on
+  - alias: switch off lights when lux > 800
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.light_lux_sensor_2_0
+      value_template: '{{ state.attributes.V_LEVEL }}'
+      above: 800
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: group.living
+          state: 'on'
+        - condition: state
+          entity_id: group.dining
+          state: 'on'
+        - condition: state
+          entity_id: group.bar
+          state: 'on'
+    action:
+      - service: light.turn_off
+        entity_id:
+          - group.living
+          - group.dining
+          - group.bar
+      - service: notify.notify
+        data:
+          message: lux levels above 800. Switching lights off downstairs.
+
+  - alias: Nightlight switch on
+    trigger:
+      platform: time
+      hours: 19
+      minutes: 01
+    action:
+      service: scene.turn_on
+      entity_id: scene.nachtlamp_bo
+
+  - alias: Nightlight switch off
+    trigger:
+      platform: time
+      hours: 7
+      minutes: 30
+    action:
+      service: light.turn_off
+      entity_id: light.nachtlamp_bo
+
+  # - alias: scene controller actions
+  #   trigger:
+  #     platform: state
+  #     entity_id: sensor.scene_controller_1_10
+  #   action:
+  #     service: scene.turn_on
+  #     data_template:
+  #       entity_id: >
+  #         {% if trigger == 3 %}
+  #           all_off
+  #         # {% elif is_state(trigger,'2') %}
+  #         #   scene.table_full_on
+  #         # {% elif is_state(trigger,'1') %}
+  #         #   scene.living_on
+  #         {% endif %}
+    
+  - alias: scene controller tap hold action
+    trigger:
+      platform: state
+      entity_id: sensor.scene_controller_1_10
+      to: "3"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.all_off
+      #- service: hello_state.hello
+
+  - alias: scene controller single tap action
+    trigger:
+      platform: state
+      entity_id: sensor.scene_controller_1_10
+      to: "1"
+    action:
+      - service: scene.turn_on
+        entity_id:
+          - scene.table_on
+          - scene.living_on
+      - service: script.turn_on
+        entity_id: script.lights_on_sunset
+
+
+  - alias: scene controller double tap option
+    trigger:
+      platform: state
+      entity_id: sensor.scene_controller_1_10
+      to: "2"
+    action:
+      - service: scene.turn_on
+        entity_id:
+          - scene.table_full_on
+  
+  - alias: lights on at sunset if living lights are on
+    trigger:
+      platform: sun
+      event: sunset
+    condition:
+      condition: state
+      entity_id: group.dining
+      state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: 
+        - scene.bar_on
+        - scene.hoeklamp_on
+        - scene.tv_light_on
+
+  - alias: bar light off at sunrise
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: light.turn_off
+        entity_id:
+          - group.bar
+          - light.hoeklamp
+          - light.tv_lamp
+
+# device_tracker:
+#     platform: nmap_tracker
+#     hosts: 192.168.2.7-8
+#     home_interval: 10
+#     interval_seconds: 60
+
+notify:
+  platform: telegram
+  api_key: !secret telegram_api_key
+  chat_id: !secret telegram_chat_id
+
+
+group:
+  # default_view:
+  #   view: yes
+  #   entities:
+  #     - group.livingshades
+  #     - group.living
+  #     - group.dining
+  #     - group.bar
+  livingshades:
+    name: Living room shade
+    entities:
+      - scene.60133
+      - scene.61722
+      - scene.64040
+      - scene.7247
+  living:
+    name: Living
+    entities:
+      - light.hue_lamp_2
+      - light.hue_lamp_3
+      - light.hoeklamp
+      - light.tv_lamp
+  dining:
+    name: Dining
+    entities:
+      - light.eettafel_1
+      - light.eettafel_2
+  bar:
+    name: The bar
+    entities:
+      - light.bar_lamp
+  
