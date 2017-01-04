@@ -1,0 +1,5 @@
+gateways:
+    - device: "/dev/ttyUSB0"
+      persistence_file: "/home/pi/.homeassistant/mysensors_usb.json"
+persistence: true
+version: "1.5"

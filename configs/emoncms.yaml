@@ -1,0 +1,7 @@
+emoncms_history:
+  api_key: !secret emoncms_key
+  url: https://emoncms.org
+  inputnode: 1
+  whitelist:
+    - sun.sun
+    - sensor.light_lux_sensor_2_0
