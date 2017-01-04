@@ -51,14 +51,7 @@ logbook:
 #    username: !secret honeywell_username
 #    password: !secret honeywell_password
 
-mysensors:
-  gateways:
-    #- device: "/dev/ttyMySensorsGateway"
-    - device: "/dev/ttyUSB0"
-      persistence_file: "/home/pi/.homeassistant/mysensors_usb.json"
-  #debug: true
-  persistence: true
-  version: "1.5"
+mysensors: !include configs/mysensors.yaml
 
 scene powerview:
   platform: hunterdouglas_powerview
