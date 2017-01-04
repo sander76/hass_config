@@ -13,6 +13,7 @@ homeassistant:
   customize:
     scene.all_off:
       icon: mdi:candle
+      friendly_name: "All lights off"
 # Discover some devices automatically
 # discovery:
 
@@ -28,8 +29,6 @@ recorder:
 
 updater:
 
-
-
 # Enables the frontend
 frontend:
 
@@ -41,9 +40,6 @@ history:
 
 # Track the sun
 sun:
-
-# Show links to resources in log and frontend
-# introduction:
 
 # View all events in a logbook
 logbook:
@@ -111,7 +107,7 @@ scene:
       light.tv_lamp:
         state: on
         xy_color: [0.5144,0.4148]
-        brightness: 87
+        brightness: 55
   - name: all off
     entities:
       group.living: off
@@ -132,147 +128,7 @@ script:
           - scene.tv_light_on
         
 
-automation:
-  - alias: Set night light when triggered on
-    trigger:
-      platform: state
-      entity_id: light.nachtlamp_bo
-      from: 'off'
-      to: 'on'
-    action:
-      service: scene.turn_on
-      entity_id: scene.nachtlamp_bo
-
-  - alias: Set hoeklamp when triggered on
-    trigger:
-      platform: state
-      entity_id: light.hoeklamp
-      from: 'off'
-      to: 'on'
-    action:
-      service: scene.turn_on
-      entity_id: scene.hoeklamp_on
-  - alias: switch off lights when lux > 800
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.light_lux_sensor_2_0
-      value_template: '{{ state.attributes.V_LEVEL }}'
-      above: 800
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: group.living
-          state: 'on'
-        - condition: state
-          entity_id: group.dining
-          state: 'on'
-        - condition: state
-          entity_id: group.bar
-          state: 'on'
-    action:
-      - service: light.turn_off
-        entity_id:
-          - group.living
-          - group.dining
-          - group.bar
-      - service: notify.notify
-        data:
-          message: lux levels above 800. Switching lights off downstairs.
-
-  - alias: Nightlight switch on
-    trigger:
-      platform: time
-      hours: 19
-      minutes: 01
-    action:
-      service: scene.turn_on
-      entity_id: scene.nachtlamp_bo
-
-  - alias: Nightlight switch off
-    trigger:
-      platform: time
-      hours: 7
-      minutes: 30
-    action:
-      service: light.turn_off
-      entity_id: light.nachtlamp_bo
-
-  # - alias: scene controller actions
-  #   trigger:
-  #     platform: state
-  #     entity_id: sensor.scene_controller_1_10
-  #   action:
-  #     service: scene.turn_on
-  #     data_template:
-  #       entity_id: >
-  #         {% if trigger == 3 %}
-  #           all_off
-  #         # {% elif is_state(trigger,'2') %}
-  #         #   scene.table_full_on
-  #         # {% elif is_state(trigger,'1') %}
-  #         #   scene.living_on
-  #         {% endif %}
-    
-  - alias: scene controller tap hold action
-    trigger:
-      platform: state
-      entity_id: sensor.scene_controller_1_10
-      to: "3"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.all_off
-      #- service: hello_state.hello
-
-  - alias: scene controller single tap action
-    trigger:
-      platform: state
-      entity_id: sensor.scene_controller_1_10
-      to: "1"
-    action:
-      - service: scene.turn_on
-        entity_id:
-          - scene.table_on
-          - scene.living_on
-      - service: script.turn_on
-        entity_id: script.lights_on_sunset
-
-
-  - alias: scene controller double tap option
-    trigger:
-      platform: state
-      entity_id: sensor.scene_controller_1_10
-      to: "2"
-    action:
-      - service: scene.turn_on
-        entity_id:
-          - scene.table_full_on
-  
-  - alias: lights on at sunset if living lights are on
-    trigger:
-      platform: sun
-      event: sunset
-    condition:
-      condition: state
-      entity_id: group.dining
-      state: 'on'
-    action:
-      service: scene.turn_on
-      entity_id: 
-        - scene.bar_on
-        - scene.hoeklamp_on
-        - scene.tv_light_on
-
-  - alias: bar light off at sunrise
-    trigger:
-      platform: sun
-      event: sunrise
-    action:
-      - service: light.turn_off
-        entity_id:
-          - group.bar
-          - light.hoeklamp
-          - light.tv_lamp
+automation: !include configs/automation.yaml
 
 # device_tracker:
 #     platform: nmap_tracker

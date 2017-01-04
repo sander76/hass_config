@@ -5,6 +5,10 @@
   #     - group.living
   #     - group.dining
   #     - group.bar
+house:
+  name: House
+  entities:
+    - scene.all_off
 livingshades:
   name: Living room shade
   entities:
@@ -21,9 +25,12 @@ living:
     - light.tv_lamp
 dining:
   name: Dining
+  control: hidden
   entities:
     - light.eettafel_1
     - light.eettafel_2
+    - scene.table_on
+    - scene.table_full_on
 bar:
   name: The bar
   entities:
