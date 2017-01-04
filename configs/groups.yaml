@@ -1,11 +1,12 @@
 default_view:
   view: yes
   entities:
+    - group.house
     - group.livingshades
     - group.living
     - group.dining
     - group.bar
-use:
+house:
   name: House
   entities:
     - scene.all_off
