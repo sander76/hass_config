@@ -284,34 +284,3 @@ notify:
 
 
 group: !include configs/groups.yaml
-  # default_view:
-  #   view: yes
-  #   entities:
-  #     - group.livingshades
-  #     - group.living
-  #     - group.dining
-  #     - group.bar
-  # livingshades:
-  #   name: Living room shade
-  #   entities:
-  #     - scene.60133
-  #     - scene.61722
-  #     - scene.64040
-  #     - scene.7247
-  # living:
-  #   name: Living
-  #   entities:
-  #     - light.hue_lamp_2
-  #     - light.hue_lamp_3
-  #     - light.hoeklamp
-  #     - light.tv_lamp
-  # dining:
-  #   name: Dining
-  #   entities:
-  #     - light.eettafel_1
-  #     - light.eettafel_2
-  # bar:
-  #   name: The bar
-  #   entities:
-  #     - light.bar_lamp
-  
