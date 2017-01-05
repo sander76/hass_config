@@ -6,6 +6,8 @@ default_view:
     - group.living
     - group.dining
     - group.bar
+    - sun.sun
+    - sensor.light_lux_sensor_2_0
 house:
   name: House
   entities:
