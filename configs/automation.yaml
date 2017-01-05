@@ -133,7 +133,9 @@
 - alias: notify if light switches on or off.
   trigger:
     platform: event
-    event_type: state_changed
+    event_type: call_service
+    event_data:
+      domain: light
   action:
     - service: notify.notify
       data:
