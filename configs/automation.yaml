@@ -136,6 +136,10 @@
     event_type: call_service
     event_data:
       domain: light
+  condition:
+    condition: state
+    entity_id: input_boolean.away
+    state: 'on'
   action:
     - service: notify.notify
       data:
