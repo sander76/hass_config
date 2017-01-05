@@ -132,10 +132,10 @@
         - light.tv_lamp
 - alias: notify if light switches on or off.
   trigger:
-    platform: state
-    entity_id: light
-    from: 'on'
-    to: 'off'
+    platform: event
+    event_type: STATE_CHANGED
+    event_data:
+      entity_id: light
   action:
     - service: notify.notify
       data:
