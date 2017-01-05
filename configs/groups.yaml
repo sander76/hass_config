@@ -8,6 +8,7 @@ default_view:
     - group.bar
     - sun.sun
     - sensor.light_lux_sensor_2_0
+    - input_boolean.away
 house:
   name: House
   entities:
