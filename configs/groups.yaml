@@ -10,6 +10,7 @@ default_view:
     - sensor.light_lux_sensor_2_0
 house:
   name: House
+  control: hidden
   entities:
     - scene.all_off
     - input_boolean.away
