@@ -130,3 +130,13 @@
         - group.bar
         - light.hoeklamp
         - light.tv_lamp
+- alias: notify if light switches on or off.
+  trigger:
+    platform: state
+    entity_id: light
+    from: 'on'
+    to: 'off'
+  action:
+    - service: notify.notify
+      data:
+        message: A light is switched off
