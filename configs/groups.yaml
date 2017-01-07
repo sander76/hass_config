@@ -8,7 +8,6 @@ default_view:
     - group.bar
     - sun.sun
     - sensor.light_lux_sensor_2_0
-    - script.update_restart
 house:
   name: House
   control: hidden
