@@ -20,6 +20,9 @@ homeassistant:
       friendly_name: "sta lamp 2"
     light.hue_lamp_3:
       friendly_name: "sta lamp 1"
+    input_boolean.away:
+      icon: mdi:homes
+    
 # Discover some devices automatically
 # discovery:
 
@@ -63,6 +66,9 @@ input_boolean:
   away:
     name: Away
     initial: off
+
+shell_command:
+  update_restart: bash update_restart.sh
 
 scene:
   - name: nachtlamp bo
@@ -137,6 +143,9 @@ script:
           - scene.bar_on
           - scene.hoeklamp_on
           - scene.tv_light_on
+  update_restart:
+    sequence:
+      - service: shell_command.update_restart
         
 
 automation: !include configs/automation.yaml
