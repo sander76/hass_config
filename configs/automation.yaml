@@ -145,3 +145,12 @@
     - service: notify.notify
       data:
         message: A light is switched on or off
+- alias: notify when away mode changes.
+  trigger:
+    platform: state
+    entity_id: input_boolean.away
+  action:
+    service: notify.notify
+    data_template:
+      message: >
+        Away mode changed to {{ trigger.to_state.state }}
