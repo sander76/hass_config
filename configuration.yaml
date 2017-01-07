@@ -21,7 +21,11 @@ homeassistant:
     light.hue_lamp_3:
       friendly_name: "sta lamp 1"
     input_boolean.away:
-      icon: mdi:homes
+      icon: mdi:home
+    scene.table_full_on:
+      icon: mdi:brightness-5
+    scene.table_on:
+      icon: mdi:brightness-6
     
 # Discover some devices automatically
 # discovery:
@@ -102,11 +106,11 @@ scene:
       light.hue_lamp_2:
         state: on
         xy_color: [0.5134,0.4149]
-        brightness: 150
+        brightness: 97
       light.hue_lamp_3:
         state: on
         xy_color: [0.5134,0.4149]
-        brightness: 150
+        brightness: 71
   - name: bar on
     entities:
       light.bar_lamp:
@@ -124,7 +128,7 @@ scene:
       light.tv_lamp:
         state: on
         xy_color: [0.5144,0.4148]
-        brightness: 55
+        brightness: 25
   - name: all off
     entities:
       group.living: off
