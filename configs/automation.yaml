@@ -1,12 +1,12 @@
-- alias: Set night light when triggered on
-  trigger:
-    platform: state
-    entity_id: light.nachtlamp_bo
-    from: 'off'
-    to: 'on'
-  action:
-    service: scene.turn_on
-    entity_id: scene.nachtlamp_bo
+# - alias: Set night light when triggered on
+#   trigger:
+#     platform: state
+#     entity_id: light.nachtlamp_bo
+#     from: 'off'
+#     to: 'on'
+#   action:
+#     service: scene.turn_on
+#     entity_id: scene.nachtlamp_bo
 - alias: Set hoeklamp when triggered on
   trigger:
     platform: state
@@ -43,22 +43,22 @@
     - service: notify.notify
       data:
         message: lux levels above 800. Switching lights off downstairs.
-- alias: Nightlight switch on
-  trigger:
-    platform: time
-    hours: 19
-    minutes: 01
-  action:
-    service: scene.turn_on
-    entity_id: scene.nachtlamp_bo
-- alias: Nightlight switch off
-  trigger:
-    platform: time
-    hours: 7
-    minutes: 30
-  action:
-    service: light.turn_off
-    entity_id: light.nachtlamp_bo
+# - alias: Nightlight switch on
+#   trigger:
+#     platform: time
+#     hours: 19
+#     minutes: 01
+#   action:
+#     service: scene.turn_on
+#     entity_id: scene.nachtlamp_bo
+# - alias: Nightlight switch off
+#   trigger:
+#     platform: time
+#     hours: 7
+#     minutes: 30
+#   action:
+#     service: light.turn_off
+#     entity_id: light.nachtlamp_bo
 # - alias: scene controller actions
 #   trigger:
 #     platform: state
