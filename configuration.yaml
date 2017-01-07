@@ -68,7 +68,7 @@ input_boolean:
     initial: off
 
 shell_command:
-  update_restart: bash update_restart.sh
+  update_restart: bash /home/pi/.homeassistant/update_restart.sh
 
 scene:
   - name: nachtlamp bo
