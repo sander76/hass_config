@@ -130,7 +130,7 @@
         - group.bar
         - light.hoeklamp
         - light.tv_lamp
-- alias: notify if light switches on or off.
+- alias: notify if light switches on or off depending on away state.
   trigger:
     platform: event
     event_type: call_service
@@ -141,6 +141,7 @@
     entity_id: input_boolean.away
     state: 'on'
   action:
+    - delay: 00:00:02
     - service: notify.notify
       data:
         message: A light is switched on or off

@@ -16,6 +16,10 @@ homeassistant:
       friendly_name: "All lights off"
     sensor.light_lux_sensor_2_0:
       friendly_name: "Light Sensor"
+    light.hue_lamp_2:
+      friendly_name: "sta lamp 2"
+    light.hue_lamp_3:
+      friendly_name: "sta lamp 1"
 # Discover some devices automatically
 # discovery:
 
