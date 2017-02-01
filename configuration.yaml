@@ -11,9 +11,9 @@ homeassistant:
   time_zone: Europe/Amsterdam
 
   customize:
-    scene.all_off:
-      icon: mdi:candle
-      friendly_name: "All lights off"
+    # scene.all_off:
+    #   icon: mdi:candle
+    #   friendly_name: "All lights off"
     sensor.light_lux_sensor_2_0:
       friendly_name: "Light Sensor"
     light.hue_lamp_2:
@@ -130,6 +130,8 @@ scene:
         xy_color: [0.5144,0.4148]
         brightness: 25
   - name: all off
+    icon: mdi:candle
+    friendly_name: "All lights off"
     entities:
       group.living: off
       group.dining: off
