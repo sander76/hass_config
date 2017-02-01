@@ -26,8 +26,6 @@ homeassistant:
       icon: mdi:brightness-5
     scene.table_on:
       icon: mdi:brightness-6
-    scene.60133:
-      icon: mdi:blinds
     
 # Discover some devices automatically
 # discovery:
@@ -167,5 +165,10 @@ notify:
   api_key: !secret telegram_api_key
   chat_id: !secret telegram_chat_id
 
+device_tracker:
+  - platform: ddwrt
+    host: !secret ddwrt_host
+    username: !secret ddwrt_user_name
+    password: !secret ddwrt_password
 
 group: !include configs/groups.yaml
