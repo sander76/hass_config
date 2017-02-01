@@ -170,7 +170,7 @@ device_tracker:
     host: !secret ddwrt_host
     username: !secret ddwrt_user_name
     password: !secret ddwrt_password
-    consider_home: 10
+    consider_home: 120
     interval_seconds: 20
 
 group: !include configs/groups.yaml
