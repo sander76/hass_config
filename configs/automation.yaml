@@ -1,12 +1,3 @@
-# - alias: Set night light when triggered on
-#   trigger:
-#     platform: state
-#     entity_id: light.nachtlamp_bo
-#     from: 'off'
-#     to: 'on'
-#   action:
-#     service: scene.turn_on
-#     entity_id: scene.nachtlamp_bo
 - alias: Set hoeklamp when triggered on
   trigger:
     platform: state
@@ -43,38 +34,6 @@
     - service: notify.notify
       data:
         message: lux levels above 800. Switching lights off downstairs.
-# - alias: Nightlight switch on
-#   trigger:
-#     platform: time
-#     hours: 19
-#     minutes: 01
-#   action:
-#     service: scene.turn_on
-#     entity_id: scene.nachtlamp_bo
-# - alias: Nightlight switch off
-#   trigger:
-#     platform: time
-#     hours: 7
-#     minutes: 30
-#   action:
-#     service: light.turn_off
-#     entity_id: light.nachtlamp_bo
-# - alias: scene controller actions
-#   trigger:
-#     platform: state
-#     entity_id: sensor.scene_controller_1_10
-#   action:
-#     service: scene.turn_on
-#     data_template:
-#       entity_id: >
-#         {% if trigger == 3 %}
-#           all_off
-#         # {% elif is_state(trigger,'2') %}
-#         #   scene.table_full_on
-#         # {% elif is_state(trigger,'1') %}
-#         #   scene.living_on
-#         {% endif %}
-  
 - alias: scene controller tap hold action
   trigger:
     platform: state
@@ -83,7 +42,6 @@
   action:
     - service: scene.turn_on
       entity_id: scene.all_off
-    #- service: hello_state.hello
 - alias: scene controller single tap action
   trigger:
     platform: state
@@ -105,7 +63,6 @@
     - service: scene.turn_on
       entity_id:
         - scene.table_full_on
-
 - alias: lights on at sunset if living lights are on
   trigger:
     platform: sun
@@ -154,3 +111,13 @@
     data_template:
       message: >
         Away mode changed to {{ trigger.to_state.state }}
+- alias: notify when sander leaves.
+  trigger:
+    platform: state
+    entity_id: device_tracker.c0eefbd3c35f
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.notify
+    data:
+      message: Sander has left.
