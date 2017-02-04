@@ -2,8 +2,8 @@
 *.db
 *.db-journal
 backup/
-custom_components/
 deps/
 .HA_VERSION
 .uuid
 secrets.yaml
+script.py

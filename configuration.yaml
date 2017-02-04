@@ -147,10 +147,46 @@ script:
           - scene.bar_on
           - scene.hoeklamp_on
           - scene.tv_light_on
+  blind_scene_at_time:
+    alias: Activate a blind scene depending on time.
+    sequence:
+      - condition: time
+        after: '7:00:00'
+        before: '8:00:00'
+      - service: scene.turn_on
+        entity_id: scene.7247  #blinds semi close
+  blind_scene_at_time_and_sunrise:
+    alias: Activate a blind scene depending on time and sunrise
+    sequence:
+      - condition: 
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: 'above_horizon'
+          - condition: time
+            after: '8:00:00'
+            before: '9:00:00'
+      - service: scene.turn_on
+        entity_id: scene.64040 #blinds in daylight mode
+  blind_scene_at_time_and_sun_below_horizon:
+    alias: Activate a blind scene in time slot and sun below horizon
+    sequence:
+      - condition:
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: 'below_horizon'
+          - condition: time
+            after: '8:00:00'
+            before: '9:00:00'
+      - service: scene.turn_on
+        entity_id: scene.7247
   update_restart:
     sequence:
       - service: shell_command.update_restart
-        
+
 
 automation: !include configs/automation.yaml
 
