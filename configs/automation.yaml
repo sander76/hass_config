@@ -56,7 +56,7 @@
       entity_id: 
         - script.lights_on_sunset
         - script.blind_scene_at_time
-        - script.blind_scene_at_time_and_sunrise
+        #- script.blind_scene_at_time_and_sunrise
 - alias: scene controller double tap option
   trigger:
     platform: state
@@ -124,17 +124,15 @@
     service: notify.notify
     data:
       message: Sander has left.
-# - alias: activate scene at sunrise and no earlier than..
-#   trigger:
-#     platform: state
-#     entity_id: sensor.scene_controller_1_10
-#     to: "1"
-#   action:
-#     service: script.turn_on
-#     entity_id: script.test
-
-# button push: activate script 1 en 3
-# timetrigger: activate script 1 en 2 
-# script 1: > acht uur EN zon is op: activate day scene
-# script 2: > 9 uur activate day scene
-# script 3: > 7 uur activate evening scene 
+- alias: activate blind at sunrise but after 8
+  trigger:
+    - platform: sun
+      event: sunrise
+    - platform: time
+      after: '8:00:00'
+  condition:
+    condition: time
+    after: '8:00:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.64040

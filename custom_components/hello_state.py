@@ -1,3 +1,5 @@
+"""Sets the state of a scene controller"""
+
 # The domain of your component. Should be equal to the name of your component.
 DOMAIN = 'hello_state'
 
@@ -9,6 +11,7 @@ def setup(hass, config):
     """Setup is called when Home Assistant is loading our component."""
 
     def handle_hello(call):
+        """Sets the state of the scene controller"""
         #name = call.data.get(ATTR_NAME, DEFAULT_NAME)
 
         hass.states.set('sensor.scene_controller_1_10', 5)
