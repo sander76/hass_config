@@ -136,3 +136,24 @@
   action:
     service: scene.turn_on
     entity_id: scene.64040
+- alias: put the shade in privacy mode at a certain time
+  trigger:
+    - platform: time
+      after: '19:00:00'
+    - platform: sun
+      event: sunset
+  condition:
+    condition: sun
+    before: sunset
+    before_offset: '1:00:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.7247
+- alias: Put the shade in night mode when completely dark
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '1:00:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.60133
