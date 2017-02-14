@@ -7,33 +7,33 @@
   action:
     service: scene.turn_on
     entity_id: scene.hoeklamp_on
-- alias: switch off lights when lux > 800
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.light_lux_sensor_2_0
-    value_template: '{{ state.attributes.V_LEVEL }}'
-    above: 800
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: group.living
-        state: 'on'
-      - condition: state
-        entity_id: group.dining
-        state: 'on'
-      - condition: state
-        entity_id: group.bar
-        state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id:
-        - group.living
-        - group.dining
-        - group.bar
-    - service: notify.notify
-      data:
-        message: lux levels above 800. Switching lights off downstairs.
+# - alias: switch off lights when lux > 800
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.light_lux_sensor_2_0
+#     value_template: '{{ state.attributes.V_LEVEL }}'
+#     above: 800
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: group.living
+#         state: 'on'
+#       - condition: state
+#         entity_id: group.dining
+#         state: 'on'
+#       - condition: state
+#         entity_id: group.bar
+#         state: 'on'
+#   action:
+#     - service: light.turn_off
+#       entity_id:
+#         - group.living
+#         - group.dining
+#         - group.bar
+#     - service: notify.notify
+#       data:
+#         message: lux levels above 800. Switching lights off downstairs.
 - alias: scene controller tap hold action
   trigger:
     platform: state
