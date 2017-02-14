@@ -57,9 +57,6 @@ sun:
 # View all events in a logbook
 logbook:
 
-# My honeywell thermostat.
-# climate: !include configs/honeywell.yaml
-
 mysensors: !include configs/mysensors.yaml
 
 scene powerview:
@@ -74,67 +71,8 @@ input_boolean:
 shell_command:
   update_restart: bash /home/pi/.homeassistant/update_restart.sh
 
-scene:
-  - name: nachtlamp bo
-    entities:
-      light.nachtlamp_bo:
-        state: on
-        xy_color: [0.667,0.319]
-        brightness: 50
-  - name: table on
-    entities:
-      light.eettafel_1:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 150
-      light.eettafel_2:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 150
-  - name: table full on
-    entities:
-      light.eettafel_1:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 254
-      light.eettafel_2:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 254
-  - name: living on
-    entities:
-      light.hue_lamp_2:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 97
-      light.hue_lamp_3:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 71
-  - name: bar on
-    entities:
-      light.bar_lamp:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 150
-  - name: hoeklamp on
-    entities:
-      light.hoeklamp:
-        state: on
-        xy_color: [0.5134,0.4149]
-        brightness: 150  
-  - name: tv light on
-    entities:
-      light.tv_lamp:
-        state: on
-        xy_color: [0.5144,0.4148]
-        brightness: 25
-  - name: all off
-    entities:
-      group.living: off
-      group.dining: off
-      group.bar: off
-
+scene: !include configs/scenes.yaml
+  
 script:
   lights_on_sunset:
     alias: Turn lights on if sun has set
@@ -162,12 +100,6 @@ script:
 
 automation: !include configs/automation.yaml
 
-# device_tracker:
-#     platform: nmap_tracker
-#     hosts: 192.168.2.7-8
-#     home_interval: 10
-#     interval_seconds: 60
-
 notify:
   platform: telegram
   api_key: !secret telegram_api_key
@@ -182,8 +114,8 @@ device_tracker:
     interval_seconds: 20
 
 hass_telepot:
-    bot_token : !secret telepot_api_key
-    allowed_chat_ids : !secret telepot_chat_id
+    bot_token: !secret telepot_api_key
+    allowed_chat_ids: !secret telepot_chat_id
     commands:
     -   command: /away
         script:
