@@ -117,21 +117,21 @@ hass_telepot:
     bot_token: !secret telepot_api_key
     allowed_chat_ids: !secret telepot_chat_id
     commands:
-    -   command: /away
+    -   command: away
         script:
             service: input_boolean.turn_on
             entity_id: input_boolean.away
-    -   command: /athome
+    -   command: athome
         script:
             service: input_boolean.turn_off
             entity_id: input_boolean.away
-    -   command: /presence
+    -   command: presence
         response:
             text: Please choose whether you are at home or not
             keyboard:
-            -   /away
-            -   /athome
-    -   command: /alloff
+            -   away
+            -   athome
+    -   command: alloff
         script:
             service: scene.turn_on
             entity_id: scene.all_off
