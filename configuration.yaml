@@ -140,4 +140,3 @@ hass_telepot:
 
 group: !include configs/groups.yaml
 
-emulated_hue:
