@@ -10,7 +10,12 @@ default_view:
     - sensor.light_lux_sensor_2_0
     - device_tracker.c0eefbd3c35f
     - device_tracker.c0eefbf28296
-    - sensor.main_button
+    - group.batteries
+batteries:
+  name: Batteries
+  control: hidden
+  entities:
+    -   sensor.main_button
 house:
   name: House
   control: hidden
