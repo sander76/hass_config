@@ -15,7 +15,8 @@ batteries:
   name: Batteries
   control: hidden
   entities:
-    -   sensor.main_button
+    - sensor.main_button
+    - sensor.light_sensor
 house:
   name: House
   control: hidden
