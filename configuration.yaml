@@ -140,3 +140,10 @@ hass_telepot:
 
 group: !include configs/groups.yaml
 
+sensor:
+  - platform: template
+    sensors:
+      main_button:
+        friendly_name: 'Main button battery level'
+        value_template: '{{ states.sensor.scene_controller_1_10.battery_level}}'
+        unit_of_measurement: '%'
