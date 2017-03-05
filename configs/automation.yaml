@@ -18,7 +18,7 @@
     - service: scene.turn_on
       entity_id:
         - scene.table_on
-        - scene.living_on
+        #- scene.living_on
     - service: script.turn_on
       entity_id: 
         - script.lights_on_sunset

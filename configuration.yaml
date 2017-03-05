@@ -72,7 +72,7 @@ shell_command:
   update_restart: bash /home/pi/.homeassistant/update_restart.sh
 
 scene: !include configs/scenes.yaml
-  
+
 script:
   lights_on_sunset:
     alias: Turn lights on if sun has set
@@ -85,6 +85,7 @@ script:
           - scene.bar_on
           - scene.hoeklamp_on
           - scene.tv_light_on
+          - scene.wandlamp_on
   blind_scene_at_time:
     alias: Activate a blind scene depending on time.
     sequence:

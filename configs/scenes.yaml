@@ -46,6 +46,16 @@
       state: on
       xy_color: [0.5144,0.4148]
       brightness: 25
+- name: wandlamp on
+  entities:
+    light.hue_color_spot_1:
+      state: on
+      xy_color: [0.5144,0.4148]
+      brightness: 25
+    light.hue_color_spot_2:
+      state: on
+      xy_color: [0.5144,0.4148]
+      brightness: 25
 - name: all off
   entities:
     group.living: off
