@@ -97,6 +97,18 @@ script:
   update_restart:
     sequence:
       - service: shell_command.update_restart
+  wandlamp_on:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.wandlamp1
+        data:
+          brightness: 25
+          xy_color: [0.5144,0.4148]
+      - service: light.turn_on
+        entity_id: light.wandlamp2
+        data:
+          brightness: 5
+          xy_color: [0.5144,0.4148]
 
 
 automation: !include configs/automation.yaml
