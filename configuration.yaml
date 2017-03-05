@@ -85,7 +85,8 @@ script:
           - scene.bar_on
           - scene.hoeklamp_on
           - scene.tv_light_on
-          - scene.wandlamp_on
+      - service: script.turn_on
+          - script.wandlamp_on
   blind_scene_at_time:
     alias: Activate a blind scene depending on time.
     sequence:
@@ -102,12 +103,12 @@ script:
       - service: light.turn_on
         entity_id: light.wandlamp1
         data:
-          brightness: 25
+          brightness: 140
           xy_color: [0.5144,0.4148]
       - service: light.turn_on
         entity_id: light.wandlamp2
         data:
-          brightness: 5
+          brightness: 81
           xy_color: [0.5144,0.4148]
 
 
