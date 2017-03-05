@@ -38,8 +38,8 @@ living:
     - light.hue_lamp_3
     - light.hoeklamp
     - light.tv_lamp
-    - light.hue_color_spot_1
-    - light.hue_color_spot_2
+    - light.wandlamp1
+    - light.wandlamp2
 dining:
   name: Dining
   control: hidden
