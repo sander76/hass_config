@@ -1,12 +1,6 @@
-- alias: Set hoeklamp when triggered on
-  trigger:
-    platform: state
-    entity_id: light.hoeklamp
-    from: 'off'
-    to: 'on'
-  action:
-    service: scene.turn_on
-    entity_id: scene.hoeklamp_on
+#######################################################
+# Scene controller triggers
+#######################################################    
 - alias: scene controller tap hold action
   trigger:
     platform: state
@@ -29,7 +23,6 @@
       entity_id: 
         - script.lights_on_sunset
         - script.blind_scene_at_time
-        #- script.blind_scene_at_time_and_sunrise
 - alias: scene controller double tap option
   trigger:
     platform: state
@@ -39,6 +32,9 @@
     - service: scene.turn_on
       entity_id:
         - scene.table_full_on
+#######################################################
+# Light automations
+#######################################################            
 - alias: lights on at sunset if living lights are on
   trigger:
     platform: sun
@@ -63,6 +59,18 @@
         - group.bar
         - light.hoeklamp
         - light.tv_lamp
+- alias: Set hoeklamp when triggered on
+  trigger:
+    platform: state
+    entity_id: light.hoeklamp
+    from: 'off'
+    to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.hoeklamp_on
+#######################################################
+# Notifications
+#######################################################    
 - alias: notify if light switches on or off depending on away state.
   trigger:
     platform: event
@@ -105,7 +113,7 @@
     - platform: sun
       event: sunrise
     - platform: time
-      after: '8:00:00'
+      after: '8:01:00'
   condition:
     condition: time
     after: '8:00:00'
