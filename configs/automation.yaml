@@ -44,11 +44,10 @@
     entity_id: group.dining
     state: 'on'
   action:
-    service: scene.turn_on
-    entity_id: 
-      - scene.bar_on
-      - scene.hoeklamp_on
-      - scene.tv_light_on
+    - service: script.turn_on
+      entity_id: 
+      - script.living_default_on
+      - script.bar_on
 - alias: bar light off at sunrise
   trigger:
     platform: sun
@@ -57,17 +56,16 @@
     - service: light.turn_off
       entity_id:
         - group.bar
-        - light.hoeklamp
-        - light.tv_lamp
-- alias: Set hoeklamp when triggered on
-  trigger:
-    platform: state
-    entity_id: light.hoeklamp
-    from: 'off'
-    to: 'on'
-  action:
-    service: scene.turn_on
-    entity_id: scene.hoeklamp_on
+        - group.living
+# - alias: Set stalamp when triggered on
+#   trigger:
+#     platform: state
+#     entity_id: light.hoeklamp
+#     from: 'off'
+#     to: 'on'
+#   action:
+#     service: scene.turn_on
+#     entity_id: scene.hoeklamp_on
 #######################################################
 # Notifications
 #######################################################    

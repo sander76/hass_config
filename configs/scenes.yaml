@@ -18,44 +18,44 @@
       state: on
       xy_color: [0.5134,0.4149]
       brightness: 254
-- name: living on
-  entities:
-    light.hue_lamp_2:
-      state: on
-      xy_color: [0.5134,0.4149]
-      brightness: 97
-    light.hue_lamp_3:
-      state: on
-      xy_color: [0.5134,0.4149]
-      brightness: 71
-- name: bar on
-  entities:
-    light.bar_lamp:
-      state: on
-      xy_color: [0.5134,0.4149]
-      brightness: 150
-- name: hoeklamp on
-  entities:
-    light.hoeklamp:
-      state: on
-      xy_color: [0.5134,0.4149]
-      brightness: 70  
-- name: tv light on
-  entities:
-    light.tv_lamp:
-      state: on
-      xy_color: [0.5144,0.4148]
-      brightness: 25
-- name: wandlamp on
-  entities:
-    light.hue_color_spot_1:
-      state: on
-      xy_color: [0.5144,0.4148]
-      brightness: 25
-    light.hue_color_spot_2:
-      state: on
-      xy_color: [0.5144,0.4148]
-      brightness: 25
+# - name: living on
+#   entities:
+#     light.hue_lamp_2:
+#       state: on
+#       xy_color: [0.5134,0.4149]
+#       brightness: 97
+#     light.hue_lamp_3:
+#       state: on
+#       xy_color: [0.5134,0.4149]
+#       brightness: 71
+# - name: bar on
+#   entities:
+#     light.bar_lamp:
+#       state: on
+#       xy_color: [0.5134,0.4149]
+#       brightness: 150
+# - name: hoeklamp on
+#   entities:
+#     light.hoeklamp:
+#       state: on
+#       xy_color: [0.5134,0.4149]
+#       brightness: 70  
+# - name: tv light on
+#   entities:
+#     light.tv_lamp:
+#       state: on
+#       xy_color: [0.5144,0.4148]
+#       brightness: 25
+# - name: wandlamp on
+#   entities:
+#     light.hue_color_spot_1:
+#       state: on
+#       xy_color: [0.5144,0.4148]
+#       brightness: 25
+#     light.hue_color_spot_2:
+#       state: on
+#       xy_color: [0.5144,0.4148]
+#       brightness: 25
 - name: all off
   entities:
     group.living: off

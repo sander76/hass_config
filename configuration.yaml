@@ -80,14 +80,10 @@ script:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
-      - service: scene.turn_on
-        entity_id: 
-          - scene.bar_on
-          - scene.hoeklamp_on
-          - scene.tv_light_on
       - service: script.turn_on
-        entity_id:
-          - script.wandlamp_on
+        entity_id: 
+        - script.living_default_on
+        - script.bar_on
   blind_scene_at_time:
     alias: Activate a blind scene depending on time.
     sequence:
@@ -111,7 +107,39 @@ script:
         data:
           brightness: 81
           xy_color: [0.5144,0.4148]
-
+  tv_lamp_on:
+    service: light.turn_on
+    entity_id: light.tv_lamp
+    data:
+      xy_color: [0.5144,0.4148]
+      brightness: 25
+  sta_lamp_on:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.hue_lamp_2
+        data:
+          xy_color: [0.5134,0.4149]
+          brightness: 97
+      - service: light.turn_on
+        entity_id: light.hue_lamp_3
+        data:
+          xy_color: [0.5134,0.4149]
+        brightness: 71
+  bar_on:
+    sequence:
+      service: light.turn_on
+      entity_id: light.bar_lamp
+      data:
+        xy_color: [0.5134,0.4149]
+        brightness: 150
+  living_default_on:
+    sequence:
+      - service: script.turn_on
+        entity_id: 
+        - script.wandlamp_on
+        - script.tv_lamp_on
+        - script.sta_lamp_on
+        
 
 automation: !include configs/automation.yaml
 
