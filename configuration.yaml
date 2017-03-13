@@ -57,6 +57,8 @@ sun:
 # View all events in a logbook
 logbook:
 
+config:
+
 mysensors: !include configs/mysensors.yaml
 
 scene powerview:
