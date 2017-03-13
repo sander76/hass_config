@@ -102,13 +102,13 @@ script:
       - service: light.turn_on
         entity_id: light.wandlamp1
         data:
-          brightness: 140
-          xy_color: [0.5144,0.4148]
+          brightness: 85
+          xy_color: [0.5268,0.4133]
       - service: light.turn_on
         entity_id: light.wandlamp2
         data:
-          brightness: 81
-          xy_color: [0.5144,0.4148]
+          brightness: 85
+          xy_color: [0.5268,0.4133]
   tv_lamp_on:
     sequence:
       - service: light.turn_on
