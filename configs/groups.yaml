@@ -33,7 +33,9 @@ livingshades:
     - scene.7247
 living:
   name: Living
+  control: hidden
   entities:
+    - script.living_default_on
     - light.hue_lamp_2
     - light.hue_lamp_3
     - light.hoeklamp
