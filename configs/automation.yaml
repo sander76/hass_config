@@ -48,7 +48,7 @@
       entity_id: 
       - script.living_default_on
       - script.bar_on
-- alias: bar light off at sunrise
+- alias: all lights except table lights off at sunrise
   trigger:
     platform: sun
     event: sunrise
@@ -107,7 +107,7 @@
 #######################################################
 # Shades
 #######################################################
-- alias: activate blind at sunrise but after 8
+- alias: activate blind at sunrise but after 8AM
   trigger:
     - platform: sun
       event: sunrise
@@ -122,9 +122,10 @@
 - alias: put the shade in privacy mode at a certain time
   trigger:
     - platform: time
-      after: '19:00:00'
+      after: '20:00:00'
     - platform: sun
       event: sunset
+      offset: -'1:00:00'
   condition:
     condition: sun
     before: sunset
@@ -141,5 +142,35 @@
     service: scene.turn_on
     entity_id: scene.60133
 #######################################################
-# Battery levels
+# Away modes
 #######################################################
+- alias: lights on at timeschedule
+  trigger:
+    - platform: sun
+      event: sunset
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.away
+        state: 'on'
+      - condition: time
+        before: '21:00:00'
+  action:
+    - service: scene.turn_on
+      entity_id:
+        - scene.table_on
+- alias: all lights off at timeschedule
+  trigger:
+    - platform: time
+      after: '22:15'
+  condition:
+    condition: state
+    entity_id: input_boolean.away
+    state: 'on'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.all_off
+    - service: script.turn_on
+      entity_id: 
+        - script.bar_on
