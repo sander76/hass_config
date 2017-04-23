@@ -190,7 +190,7 @@ device_tracker:
 
 group: !include configs/groups.yaml
 
-climate: !include configs/honeywell.yaml
+# climate: !include configs/honeywell.yaml
 
 sensor:
   - platform: template
