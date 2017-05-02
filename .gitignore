@@ -8,3 +8,4 @@ deps/
 secrets.yaml
 script.py
 .idea
+*.pyc
