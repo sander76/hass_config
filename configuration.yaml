@@ -155,6 +155,12 @@ notify:
   api_key: !secret telegram_api_key
   chat_id: !secret telegram_chat_id
 
+telegram_bot:
+  platform: polling
+  api_key: !secret telegram_api_key
+  allowed_chat_ids: !secret telepot_chat_id
+
+
 device_tracker:
   - platform: ddwrt
     host: !secret ddwrt_host
@@ -185,7 +191,6 @@ device_tracker:
 #         script:
 #             service: scene.turn_on
 #             entity_id: scene.all_off
-
 
 
 group: !include configs/groups.yaml

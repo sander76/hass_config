@@ -103,7 +103,23 @@
     service: notify.notify
     data:
       message: Sander has left.
-      
+- alias: notify when all have left.
+  trigger:
+    - platform: state
+      entity_id: device_tracker.c0eefbd3c35f
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.c0eefbf28296
+      from: 'home'
+      to: 'not_home'
+  action:
+    service: notify.notify
+    data:
+      message: 'nobody home. switch on away mode?'
+      data:
+        keyboard: '/away_on'
+
 #######################################################
 # Shades
 #######################################################
@@ -174,3 +190,25 @@
     - service: script.turn_on
       entity_id: 
         - script.bar_on
+
+#######################################################
+# bot events
+#######################################################
+- alias: bot away mode on command
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/away_on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.away
+- alias: bot away mode off command
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/away_off'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.away
