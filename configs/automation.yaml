@@ -125,7 +125,7 @@
   action:
     service: notify.notify
     data:
-      message: 'nobody home. activate /away_on mode?'
+      message: 'nobody home. activate away_on mode?'
       data:
         keyboard: '/away_on test'
 - alias : away mode off when someone comes home
