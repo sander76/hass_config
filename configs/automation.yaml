@@ -93,6 +93,8 @@
     data_template:
       message: >
         Away mode changed to {{ trigger.to_state.state }}
+      data:
+        keyboard: '/away_on test'
 # - alias: notify when sander leaves.
 #   trigger:
 #     platform: state
