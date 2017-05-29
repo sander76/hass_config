@@ -92,8 +92,8 @@
     service: notify.notify
     data:
       data_template:
-      message: >
-        Away mode changed to {{ trigger.to_state.state }}
+        message: >
+          Away mode changed to {{ trigger.to_state.state }}
 # - alias: notify when sander leaves.
 #   trigger:
 #     platform: state
