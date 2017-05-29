@@ -92,7 +92,7 @@
     service: notify.notify
     data_template:
       message: >
-        Away mode changed to {{ trigger.to_state.state }}
+        Away mode /awayoff changed to {{ trigger.to_state.state }}
 # - alias: notify when sander leaves.
 #   trigger:
 #     platform: state
@@ -125,9 +125,9 @@
   action:
     service: notify.notify
     data:
-      message: 'nobody home. activate away_on mode?'
+      message: 'nobody home. activate /awayon mode?'
       data:
-        keyboard: '/away_on test'
+        keyboard: '/awayon test'
 - alias : away mode off when someone comes home
   trigger:
     - platform: state
@@ -221,7 +221,7 @@
     platform: event
     event_type: telegram_command
     event_data:
-      command: '/away_on'
+      command: '/awayon'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.away
@@ -230,7 +230,7 @@
     platform: event
     event_type: telegram_command
     event_data:
-      command: '/away_off'
+      command: '/awayoff'
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.away
