@@ -91,10 +91,9 @@
   action:
     service: notify.notify
     data:
-      message: 'change to /awayon ?'
-    # data_template:
-    #   message: >
-    #     Away mode /awayoff changed to {{ trigger.to_state.state }}
+      data_template:
+      message: >
+        Away mode changed to {{ trigger.to_state.state }}
 # - alias: notify when sander leaves.
 #   trigger:
 #     platform: state
@@ -127,7 +126,7 @@
   action:
     service: notify.notify
     data:
-      message: 'nobody home. activate /awayon mode?'
+      message: 'nobody home. activate away mode?'
       data:
         keyboard: '/awayon test'
 - alias : away mode off when someone comes home
