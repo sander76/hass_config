@@ -90,9 +90,11 @@
     entity_id: input_boolean.away
   action:
     service: notify.notify
-    data_template:
-      message: >
-        Away mode changed to {{ trigger.to_state.state }}
+    data:
+      message: Away mode changed.
+    # data_template:
+    #   message: >
+    #     Away mode changed to {{ trigger.to_state.state }}
 # - alias: notify when sander leaves.
 #   trigger:
 #     platform: state
