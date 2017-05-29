@@ -91,7 +91,7 @@
   action:
     service: notify.notify
     data:
-      message: Away mode changed.
+      message: Away mode /awayon changed.
     # data_template:
     #   message: >
     #     Away mode changed to {{ trigger.to_state.state }}
