@@ -93,8 +93,8 @@
     data:
       message: Away mode changed.
       inline_keyboard:
-        - Away on:/awayon
-        - Away off:/awayoff
+        - 'Away on:/awayon'
+        - 'Away off:/awayoff'
     # data_template:
     #   message: >
     #     Away mode changed to {{ trigger.to_state.state }}
