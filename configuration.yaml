@@ -29,11 +29,9 @@ homeassistant:
       icon: mdi:brightness-6
 
     
-# Discover some devices automatically
-# discovery:
-media_player:
-  - platform: cast
-    host: '192.168.2.6'
+# media_player:
+#   - platform: cast
+#     host: '192.168.2.6'
 
 http:
   api_password: !secret http_password 

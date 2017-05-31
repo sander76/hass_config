@@ -12,7 +12,7 @@ default_view:
     - device_tracker.c0eefbf28296
     - group.batteries
     - climate.huiskamer
-    - media_player.pantercast
+    # - media_player.pantercast
 batteries:
   name: Batteries
   control: hidden
