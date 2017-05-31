@@ -7,8 +7,8 @@
     entity_id: sensor.scene_controller_1_10
     to: "3"
   action:
-    - service: scene.turn_on
-      entity_id: scene.all_off
+    - service: script.turn_on
+      entity_id: script.all_off
 - alias: scene controller single tap action
   trigger:
     platform: state
