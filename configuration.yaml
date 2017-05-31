@@ -41,7 +41,7 @@ light:
   host: 192.168.2.1
 
 recorder:
-  purge_days: 4
+  purge_days: 2
 
 updater:
 
