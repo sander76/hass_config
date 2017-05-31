@@ -11,9 +11,8 @@ homeassistant:
   time_zone: Europe/Amsterdam
 
   customize:
-    scene.alloff:
+    script.all_off:
       icon: mdi:candle
-      friendly_name: "All lights off"
     sensor.light_lux_sensor_2_0:
       friendly_name: "Light Sensor"
     light.hue_lamp_2:
@@ -32,6 +31,9 @@ homeassistant:
     
 # Discover some devices automatically
 # discovery:
+media_player:
+  - platform: cast
+    host: '192.168.2.6'
 
 http:
   api_password: !secret http_password 
@@ -146,7 +148,13 @@ script:
         - script.wandlamp_on
         - script.tv_lamp_on
         - script.sta_lamp_on
-        
+  all_off:
+    alias: All lights off.
+    service: light.turn_off
+    entity_id:
+      - group.living
+      - group.dining
+      - group.bar     
 
 automation: !include configs/automation.yaml
 
