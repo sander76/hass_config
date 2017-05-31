@@ -11,7 +11,7 @@ homeassistant:
   time_zone: Europe/Amsterdam
 
   customize:
-    scene.all_off:
+    scene.alloff:
       icon: mdi:candle
       friendly_name: "All lights off"
     sensor.light_lux_sensor_2_0:

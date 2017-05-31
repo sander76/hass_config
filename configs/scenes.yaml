@@ -18,6 +18,11 @@
       state: on
       xy_color: [0.5134,0.4149]
       brightness: 254
+- name: alloff
+  entities:
+    group.living: off
+    group.dining: off
+    group.bar: off
 # - name: living on
 #   entities:
 #     light.hue_lamp_2:
@@ -56,8 +61,4 @@
 #       state: on
 #       xy_color: [0.5144,0.4148]
 #       brightness: 25
-- name: all off
-  entities:
-    group.living: off
-    group.dining: off
-    group.bar: off
+

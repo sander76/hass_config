@@ -22,7 +22,7 @@ house:
   name: House
   control: hidden
   entities:
-    - scene.all_off
+    - scene.alloff
     - input_boolean.away
 livingshades:
   name: Living room shade
