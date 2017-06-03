@@ -83,7 +83,9 @@ script:
     alias: activate a blind scene
     sequence:
       - service: scene.turn_on
-        entity_id: scene.table_full_on
+        entity_id: 
+          - scene.7247
+          - scene.table_full_on
   lights_on_sunset:
     alias: Turn lights on if sun has set
     sequence:
