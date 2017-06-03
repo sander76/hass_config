@@ -164,14 +164,16 @@ script:
 
 automation: !include configs/automation.yaml
 
-notify:
-  platform: telegram
-  chat_id: !secret telegram_chat_id
-
 telegram_bot:
   platform: polling
   api_key: !secret telegram_api_key
   allowed_chat_ids: !secret telepot_chat_id
+
+notify:
+  platform: telegram
+  chat_id: !secret telegram_chat_id
+
+
 
 device_tracker:
   - platform: ddwrt
@@ -180,30 +182,6 @@ device_tracker:
     password: !secret ddwrt_password
     consider_home: 120
     interval_seconds: 20
-
-# hass_telepot:
-#     bot_token: !secret telepot_api_key
-#     allowed_chat_ids: !secret telepot_chat_id
-#     commands:
-#     -   command: away
-#         script:
-#             service: input_boolean.turn_on
-#             entity_id: input_boolean.away
-#     -   command: athome
-#         script:
-#             service: input_boolean.turn_off
-#             entity_id: input_boolean.away
-#     -   command: presence
-#         response:
-#             text: Please choose whether you are at home or not
-#             keyboard:
-#             -   away
-#             -   athome
-#     -   command: alloff
-#         script:
-#             service: scene.turn_on
-#             entity_id: scene.all_off
-
 
 group: !include configs/groups.yaml
 
