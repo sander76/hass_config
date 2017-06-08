@@ -177,7 +177,7 @@
     before_offset: '1:00:00'
   action:
     service: scene.turn_on
-    entity_id: scene.7247
+    entity_id: scene.34037
 - alias: Put the shade in night mode when completely dark
   trigger:
     - platform: sun
@@ -185,7 +185,7 @@
       offset: '1:00:00'
   action:
     service: scene.turn_on
-    entity_id: scene.60133
+    entity_id: scene.53808
 #######################################################
 # Away modes
 #######################################################

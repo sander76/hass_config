@@ -84,8 +84,7 @@ script:
     sequence:
       - service: scene.turn_on
         entity_id: 
-          - scene.7247
-          - scene.table_full_on
+          - scene.53808
   lights_on_sunset:
     alias: Turn lights on if sun has set
     sequence:
@@ -103,7 +102,7 @@ script:
         after: '7:00:00'
         before: '8:00:00'
       - service: scene.turn_on
-        entity_id: scene.7247  #blinds semi close
+        entity_id: scene.34037  #blinds semi close
   update_restart:
     sequence:
       - service: shell_command.update_restart
