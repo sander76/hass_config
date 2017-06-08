@@ -157,7 +157,7 @@
     - platform: sun
       event: sunrise
     - platform: time
-      after: '8:01:00'
+      at: '8:01:00'
   condition:
     condition: time
     after: '8:00:00'
@@ -167,14 +167,14 @@
 - alias: put the shade in privacy mode at a certain time
   trigger:
     - platform: time
-      after: '20:00:00'
+      at: '20:00:00'
     - platform: sun
       event: sunset
       offset: '-1:00:00'
-  condition:
-    condition: sun
-    before: sunset
-    before_offset: '1:00:00'
+  # condition: I don't understand this condition
+  #   condition: sun
+  #   before: sunset
+  #   before_offset: '1:00:00'
   action:
     service: scene.turn_on
     entity_id: scene.34037
@@ -208,7 +208,7 @@
 - alias: all lights off at timeschedule
   trigger:
     - platform: time
-      after: '22:15'
+      at: '22:15'
   condition:
     condition: state
     entity_id: input_boolean.away

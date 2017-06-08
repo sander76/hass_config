@@ -28,10 +28,9 @@ house:
 livingshades:
   name: Living room shade
   entities:
-    - scene.60133
-    - scene.61722
+    - scene.34037
+    - scene.53808
     - scene.64040
-    - scene.7247
 living:
   name: Living
   control: hidden
