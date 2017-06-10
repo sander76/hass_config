@@ -218,15 +218,7 @@
 #######################################################
 # bot events
 #######################################################
-- alias: bot away mode on command
-  trigger:
-    platform: event
-    event_type: telegram_command
-    event_data:
-      command: '/awayon'
-  action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.away
+
 - alias: bot away mode off command
   trigger:
     platform: event
@@ -235,6 +227,15 @@
       command: '/awayoff'
   action:
     - service: input_boolean.turn_off
+      entity_id: input_boolean.away
+- alias: bot away mode on command
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/awayon'
+  action:
+    - service: input_boolean.turn_on
       entity_id: input_boolean.away
 - alias: bot away callback
   trigger:
