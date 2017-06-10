@@ -91,12 +91,9 @@
   action:
     service: telegram_bot.send_message
     data_template:
-      title: '*Away mode has changed*'
       message: 'Away mode changed to {{ trigger.to_state.state }}.'
-      # data:
-      #   inline_keyboard:
-      #     - 'Away on:/awayon'
-      #     - 'Away off:/awayoff'
+      inline_keyboard:
+        - "Away on:/awayon, Away off:/awayoff"
     # data_template:
     #   message: >
     #     Away mode changed to {{ trigger.to_state.state }}
@@ -132,9 +129,7 @@
   action:
     service: notify.notify
     data:
-      message: 'nobody home. activate awayon mode?'
-      data:
-        keyboard: '/awayon'
+      message: 'nobody home. activate /awayon mode?'   
 - alias : away mode off when someone comes home
   trigger:
     - platform: state
@@ -241,3 +236,13 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.away
+- alias: bot away callback
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/awayon'
+  action:
+    - service: telegram_bot.send_message
+      data_template:
+        message: "callback fired."
