@@ -42,6 +42,16 @@ light:
 
 recorder:
   purge_days: 2
+  exclude:
+    - sensor.light_lux_sensor_2_0
+  #  - sun.sun
+  #  - sensor.light_lux_sensor_2_0
+
+hass_aggregator:
+  - entity_id: sensor.light_lux_sensor_2_0
+    aggregator:
+      method: min
+      range: 10
 
 updater:
 
