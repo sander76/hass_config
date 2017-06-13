@@ -16,7 +16,9 @@ hass-aggregator:
 
 average
 max
+maxevery
 min
+minevery
 cap
 sum
 sun # special case with capping and skipping.
@@ -59,14 +61,14 @@ def async_setup(hass, config):
     return True
 
 
-class BaseAggrFunction():
-    def __init__(self, name, range=None):
+class BaseAggrFunction:
+    def __init__(self, name, range_=None):
         self._temp_state = None
         self._name = name
         self._attributes = {"method": name}
-        if range:
-            self._range = range
-            self._attributes['range'] = range
+        if range_:
+            self._range = range_
+            self._attributes['range'] = range_
             self._current_range = 0
 
     @property
@@ -88,7 +90,7 @@ class BaseAggrFunction():
 class AggrSkip(BaseAggrFunction):
     def __init__(self, aggregator):
         BaseAggrFunction.__init__(self, 'skip',
-                                  range=aggregator.get('range'))
+                                  range_=aggregator.get('range'))
 
     def aggregate(self, state):
         if self._check_range():
@@ -99,7 +101,7 @@ class AggrSkip(BaseAggrFunction):
 
 class AggrMax(BaseAggrFunction):
     def __init__(self, aggregator):
-        BaseAggrFunction.__init__(self, 'max', range=aggregator.get('range'))
+        BaseAggrFunction.__init__(self, 'max', range_=aggregator.get('range'))
 
     def _check_max(self, new_val):
         if self._temp_state is None:
@@ -117,7 +119,7 @@ class AggrMax(BaseAggrFunction):
 
 class AggrMin(BaseAggrFunction):
     def __init__(self, aggregator):
-        BaseAggrFunction.__init__(self, 'min', range=aggregator.get('range'))
+        BaseAggrFunction.__init__(self, 'min', range_=aggregator.get('range'))
 
     def _check_min(self, new_val):
         if self._temp_state is None:
@@ -141,6 +143,8 @@ def get_aggregator(aggregator: dict) -> BaseAggrFunction:
         return AggrMax(aggregator)
     elif _method == 'min':
         return AggrMin(aggregator)
+    else:
+        _LOGGER.error("undefined aggregator method.")
 
 
 class AggregatedEntity(Entity):
@@ -158,6 +162,7 @@ class AggregatedEntity(Entity):
 
     def aggregate(self, new_state):
         if new_state.entity_id == self.id_to_aggregate:
+            _LOGGER.debug("Aggregating entity: %s", self.id_to_aggregate)
             _state = self.aggregator.aggregate(new_state.state)
             if _state:
                 self._state = _state
