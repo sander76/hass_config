@@ -53,6 +53,10 @@ hass_aggregator:
     aggregator:
       method: min
       range: 10
+  - entity_id: sensor.light_lux_sensor_2_0
+    aggregator:
+      method: maxevery
+      cycle: 5 # minutees
 
 updater:
 
