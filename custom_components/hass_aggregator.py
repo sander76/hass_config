@@ -155,9 +155,17 @@ class AggrMaxEvery(BaseAggrFunction):
             return None
 
     def aggregate(self, event):
+        _temp = event.data.get('now')
+        _current_minute=None
+        _new_state=None
+        if _temp:
+            _current_minute=_temp.minute
+        _temp = event.data.get(ATTR_NEW_STATE)
+        if _temp:
+            _new_state=_temp.state
         return self._aggregate(event.event_type,
-                               event.get('now').minute,
-                               event.data.get(ATTR_NEW_STATE).state)
+                               _current_minute,
+                               _new_state)
 
 
 class AggrSkip(BaseAggrFunction):
