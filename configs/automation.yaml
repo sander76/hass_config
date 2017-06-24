@@ -237,13 +237,29 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.away
-- alias: bot away callback
+- alias: bot away set on
   trigger:
     platform: event
     event_type: telegram_callback
     event_data:
       data: '/awayon'
   action:
-    - service: telegram_bot.send_message
+    - service: telegram_bot.answer_callback_query
       data_template:
-        message: "callback fired."
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Away on triggered"
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.away
+- alias: bot away set off
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/awayoff'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Away off triggered"
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.away

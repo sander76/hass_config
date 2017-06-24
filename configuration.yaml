@@ -45,6 +45,7 @@ recorder:
   exclude:
     entities:
       - sensor.light_lux_sensor_2_0
+      - sensor.light_sensor
   #  - sun.sun
   #  - sensor.light_lux_sensor_2_0
 
@@ -56,7 +57,7 @@ hass_aggregator:
   - entity_id: sensor.light_lux_sensor_2_0
     aggregator:
       method: maxevery
-      cycle: 5 # minutees
+      cycle: 20 # minutees
 
 updater:
 
