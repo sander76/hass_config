@@ -231,17 +231,17 @@
 #######################################################
 # bot events
 #######################################################
-- alias: status of hass
-  trigger:
-    platform: event
-    event_type: telegram_command
-    event_data:
-      command: '/status'
-  action:
-    - service: telegram_bot.send_message
-      data_template:
-        title: '*Status update*'
-        message: Sun is {{ states('sun.sun') }}
+# - alias: status of hass
+#   trigger:
+#     platform: event
+#     event_type: telegram_command
+#     event_data:
+#       command: '/status'
+#   action:
+#     - service: telegram_bot.send_message
+#       data_template:
+#         title: '*Status update*'
+#         message: Sun is {{ states('sun.sun') }}
 - alias: bot away mode off command
   trigger:
     platform: event
