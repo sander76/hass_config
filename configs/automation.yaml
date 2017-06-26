@@ -127,9 +127,11 @@
         entity_id: device_tracker.c0eefbf28296
         state: 'not_home'
   action:
-    service: notify.notify
-    data:
-      message: 'nobody home. activate /awayon mode?'   
+    service: telegram_bot.send_message
+    data_template:
+      message: 'Nobody home. Activate away mode?'
+      inline_keyboard:
+        - "Yes:/awayon"
 - alias : away mode off when someone comes home
   trigger:
     - platform: state
@@ -188,6 +190,8 @@
   trigger:
     - platform: sun
       event: sunset
+    - platform: time
+      at: '20:55'
   condition:
     condition: and
     conditions:
@@ -200,6 +204,17 @@
     - service: scene.turn_on
       entity_id:
         - scene.table_on
+- alias: shade down at timeschedule
+  trigger:
+    - platform: time
+      at: '21:50'
+  condition:
+    condition: state
+    entity_id: input_boolean.away
+    state: 'on'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.47482
 - alias: all lights off at timeschedule
   trigger:
     - platform: time
@@ -209,16 +224,24 @@
     entity_id: input_boolean.away
     state: 'on'
   action:
-    - service: scene.turn_on
-      entity_id: scene.all_off
     - service: script.turn_on
-      entity_id: 
-        - script.bar_on
+      entity_id: script.all_off
+    
 
 #######################################################
 # bot events
 #######################################################
-
+- alias: status of hass
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/status'
+  action:
+    - service: telegram_bot.send_message
+      data_template:
+        title: '*Status update*'
+        message: "Sun is {{ states('sun.sun') }}"
 - alias: bot away mode off command
   trigger:
     platform: event

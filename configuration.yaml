@@ -46,18 +46,18 @@ recorder:
     entities:
       - sensor.light_lux_sensor_2_0
       - sensor.light_sensor
-  #  - sun.sun
+      - sun.sun
   #  - sensor.light_lux_sensor_2_0
 
-hass_aggregator:
-  - entity_id: sensor.light_lux_sensor_2_0
-    aggregator:
-      method: min
-      range: 10
-  - entity_id: sensor.light_lux_sensor_2_0
-    aggregator:
-      method: maxevery
-      cycle: 20 # minutees
+# hass_aggregator:
+#   - entity_id: sensor.light_lux_sensor_2_0
+#     aggregator:
+#       method: min
+#       range: 10
+#   - entity_id: sensor.light_lux_sensor_2_0
+#     aggregator:
+#       method: maxevery
+#       cycle: 20 # minutees
 
 updater:
 
