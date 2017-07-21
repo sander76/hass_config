@@ -191,7 +191,7 @@
     - platform: sun
       event: sunset
     - platform: time
-      at: '20:55'
+      at: '20:30'
   condition:
     condition: and
     conditions:
@@ -214,7 +214,7 @@
     state: 'on'
   action:
     - service: scene.turn_on
-      entity_id: scene.47482
+      entity_id: scene.49867
 - alias: all lights off at timeschedule
   trigger:
     - platform: time
