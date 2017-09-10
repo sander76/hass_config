@@ -94,90 +94,10 @@ shell_command:
 
 scene: !include configs/scenes.yaml
 
-script:
-  test_scene_activate:
-    alias: activate a blind scene
-    sequence:
-      - service: scene.turn_on
-        entity_id: 
-          - scene.53808
-  lights_on_sunset:
-    alias: Turn lights on if sun has set
-    sequence:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - service: script.turn_on
-        entity_id: 
-        - script.living_default_on
-        - script.bar_on
-  blind_scene_at_time:
-    alias: Activate a blind scene depending on time.
-    sequence:
-      - condition: time
-        after: '7:00:00'
-        before: '8:00:00'
-      - service: scene.turn_on
-        entity_id: scene.34037  #blinds semi close
-  update_restart:
-    sequence:
-      - service: shell_command.update_restart
-  wandlamp_on:
-    sequence:
-      - service: light.turn_on
-        entity_id: light.wandlamp1
-        data:
-          brightness: 150
-          xy_color: [0.5268,0.4133]
-      - service: light.turn_on
-        entity_id: light.wandlamp2
-        data:
-          brightness: 120
-          xy_color: [0.5268,0.4133]
-  tv_lamp_on:
-    sequence:
-      - service: light.turn_on
-        entity_id: light.tv_lamp
-        data:
-          xy_color: [0.5144,0.4148]
-          brightness: 25
-  sta_lamp_on:
-    sequence:
-      - service: light.turn_on
-        entity_id: light.hue_lamp_2
-        data:
-          xy_color: [0.5134,0.4149]
-          brightness: 130
-      - service: light.turn_on
-        entity_id: light.hue_lamp_3
-        data:
-          xy_color: [0.5134,0.4149]
-          brightness: 110
-  bar_on:
-    sequence:
-    - service: light.turn_on
-      entity_id: light.barlamp
-      data:
-        xy_color: [0.5134,0.4149]
-        brightness: 150
-  living_default_on:
-    alias: Easy lighting.
-    sequence:
-      - service: script.turn_on
-        entity_id: 
-        - script.wandlamp_on
-        - script.tv_lamp_on
-        - script.sta_lamp_on
-  all_off:
-    alias: All lights off.
-    sequence:
-      - service: light.turn_off
-        entity_id:
-          - group.living
-          - group.dining
-          - group.bar     
+script: !include scripts.yaml
 
-automation: !include configs/automation.yaml
+
+automation: !include automation.yaml
 
 telegram_bot:
   platform: polling
