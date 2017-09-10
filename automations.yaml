@@ -1,7 +1,9 @@
 #######################################################
 # Scene controller triggers
 #######################################################    
-- alias: scene controller tap hold action
+
+- id: sc_tap_hold
+  alias: scene controller tap hold action
   trigger:
     platform: state
     entity_id: sensor.scene_controller_1_10
@@ -9,7 +11,8 @@
   action:
     - service: script.turn_on
       entity_id: script.all_off
-- alias: scene controller single tap action
+- id: sc_single_tap
+  alias: scene controller single tap action
   trigger:
     platform: state
     entity_id: sensor.scene_controller_1_10
@@ -23,7 +26,8 @@
       entity_id: 
         - script.lights_on_sunset
         - script.blind_scene_at_time
-- alias: scene controller double tap option
+- id: sc_double_tap
+  alias: scene controller double tap option
   trigger:
     platform: state
     entity_id: sensor.scene_controller_1_10
@@ -35,7 +39,8 @@
 #######################################################
 # Light automations
 #######################################################            
-- alias: lights on at sunset if living lights are on
+- id: living_sunset
+  alias: lights on at sunset if living lights are on
   trigger:
     platform: sun
     event: sunset
@@ -48,7 +53,8 @@
       entity_id: 
       - script.living_default_on
       - script.bar_on
-- alias: all lights except table lights off at sunrise
+- id: all_off_but_table
+  alias: all lights except table lights off at sunrise
   trigger:
     platform: sun
     event: sunrise
@@ -69,22 +75,24 @@
 #######################################################
 # Notifications
 #######################################################    
-- alias: notify if light switches on or off depending on away state.
-  trigger:
-    platform: event
-    event_type: call_service
-    event_data:
-      domain: light
-  condition:
-    condition: state
-    entity_id: input_boolean.away
-    state: 'on'
-  action:
-    - delay: 00:00:02
-    - service: notify.notify
-      data:
-        message: A light is switched on or off
-- alias: notify when away mode changes.
+# - id: notify_1
+#   alias: notify if light switches on or off depending on away state.
+#   trigger:
+#     platform: event
+#     event_type: call_service
+#     event_data:
+#       domain: light
+#   condition:
+#     condition: state
+#     entity_id: input_boolean.away
+#     state: 'on'
+#   action:
+#     - delay: 00:00:02
+#     - service: notify.notify
+#       data:
+#         message: A light is switched on or off
+- id: notify_2
+  alias: notify when away mode changes.
   trigger:
     platform: state
     entity_id: input_boolean.away
@@ -107,7 +115,8 @@
 #     service: notify.notify
 #     data:
 #       message: Sander has left.
-- alias: notify when all have left.
+- id: notify_3
+  alias: notify when all have left.
   trigger:
     - platform: state
       entity_id: device_tracker.c0eefbd3c35f
@@ -132,7 +141,8 @@
       message: 'Nobody home. Activate away mode?'
       inline_keyboard:
         - "Yes:/awayon"
-- alias : away mode off when someone comes home
+- id: away_off
+  alias : away mode off when someone comes home
   trigger:
     - platform: state
       entity_id: device_tracker.c0eefbd3c35f
@@ -149,7 +159,8 @@
 #######################################################
 # Shades
 #######################################################
-- alias: activate blind at sunrise but after 8AM
+- id: shade_1
+  alias: activate blind at sunrise but after 8AM
   trigger:
     - platform: sun
       event: sunrise
@@ -161,7 +172,8 @@
   action:
     service: scene.turn_on
     entity_id: scene.64040
-- alias: put the shade in privacy mode at a certain time
+- id: shade_2
+  alias: put the shade in privacy mode at a certain time
   trigger:
     - platform: time
       at: '20:00:00'
@@ -175,7 +187,8 @@
   action:
     service: scene.turn_on
     entity_id: scene.34037
-- alias: Put the shade in night mode when completely dark
+- id: id_shade_3
+  alias: Put the shade in night mode when completely dark
   trigger:
     - platform: sun
       event: sunset
@@ -186,7 +199,8 @@
 #######################################################
 # Away modes
 #######################################################
-- alias: lights on at timeschedule
+- id: id_away_1
+  alias: lights on at timeschedule
   trigger:
     - platform: sun
       event: sunset
@@ -204,7 +218,8 @@
     - service: scene.turn_on
       entity_id:
         - scene.table_on
-- alias: shade down at timeschedule
+- id: id_away_2
+  alias: shade down at timeschedule
   trigger:
     - platform: time
       at: '21:50'
@@ -215,7 +230,8 @@
   action:
     - service: scene.turn_on
       entity_id: scene.49867
-- alias: all lights off at timeschedule
+- id: id_away_3
+  alias: all lights off at timeschedule
   trigger:
     - platform: time
       at: '22:15'
@@ -242,7 +258,8 @@
 #       data_template:
 #         title: '*Status update*'
 #         message: Sun is {{ states('sun.sun') }}
-- alias: bot away mode off command
+- id: id_bot_1
+  alias: bot away mode off command
   trigger:
     platform: event
     event_type: telegram_command
@@ -251,7 +268,8 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.away
-- alias: bot away mode on command
+- id: id_bot2
+  alias: bot away mode on command
   trigger:
     platform: event
     event_type: telegram_command
@@ -260,7 +278,9 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.away
-- alias: bot away set on
+# switches on away mode from incoming telegram message.
+- id: id_bot3
+  alias: bot away set on
   trigger:
     platform: event
     event_type: telegram_callback
@@ -273,7 +293,8 @@
         message: "Away on triggered"
     - service: input_boolean.turn_on
       entity_id: input_boolean.away
-- alias: bot away set off
+- id: id_bot_4
+  alias: bot away set off
   trigger:
     platform: event
     event_type: telegram_callback

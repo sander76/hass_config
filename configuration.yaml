@@ -97,7 +97,7 @@ scene: !include configs/scenes.yaml
 script: !include scripts.yaml
 
 
-automation: !include automation.yaml
+automation: !include automations.yaml
 
 telegram_bot:
   platform: polling
