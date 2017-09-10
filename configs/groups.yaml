@@ -54,5 +54,5 @@ dining:
 bar:
   name: The bar
   entities:
-    - light.bar_lamp
+    - light.barlamp
   

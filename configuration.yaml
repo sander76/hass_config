@@ -127,12 +127,12 @@ script:
       - service: light.turn_on
         entity_id: light.wandlamp1
         data:
-          brightness: 85
+          brightness: 150
           xy_color: [0.5268,0.4133]
       - service: light.turn_on
         entity_id: light.wandlamp2
         data:
-          brightness: 85
+          brightness: 120
           xy_color: [0.5268,0.4133]
   tv_lamp_on:
     sequence:
@@ -147,16 +147,16 @@ script:
         entity_id: light.hue_lamp_2
         data:
           xy_color: [0.5134,0.4149]
-          brightness: 97
+          brightness: 130
       - service: light.turn_on
         entity_id: light.hue_lamp_3
         data:
           xy_color: [0.5134,0.4149]
-          brightness: 71
+          brightness: 110
   bar_on:
     sequence:
     - service: light.turn_on
-      entity_id: light.bar_lamp
+      entity_id: light.barlamp
       data:
         xy_color: [0.5134,0.4149]
         brightness: 150
