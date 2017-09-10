@@ -30,12 +30,12 @@ wandlamp_on:
     - service: light.turn_on
       entity_id: light.wandlamp1
       data:
-        brightness: 150
+        brightness: 110
         xy_color: [0.5268,0.4133]
     - service: light.turn_on
       entity_id: light.wandlamp2
       data:
-        brightness: 120
+        brightness: 100
         xy_color: [0.5268,0.4133]
 tv_lamp_on:
   sequence:
@@ -43,7 +43,7 @@ tv_lamp_on:
       entity_id: light.tv_lamp
       data:
         xy_color: [0.5144,0.4148]
-        brightness: 25
+        brightness: 60
 sta_lamp_on:
   sequence:
     - service: light.turn_on
