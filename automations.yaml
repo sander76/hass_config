@@ -10,7 +10,8 @@
     to: "3"
   action:
     - service: script.turn_on
-      entity_id: script.all_off
+      data:
+        entity_id: script.all_off
 - id: sc_single_tap
   alias: scene controller single tap action
   trigger:
@@ -19,11 +20,13 @@
     to: "1"
   action:
     - service: scene.turn_on
-      entity_id:
+      data:
+        entity_id:
         - scene.table_on
         #- scene.living_on
     - service: script.turn_on
-      entity_id: 
+      data:
+        entity_id: 
         - script.lights_on_sunset
         - script.blind_scene_at_time
 - id: sc_double_tap
@@ -34,7 +37,8 @@
     to: "2"
   action:
     - service: scene.turn_on
-      entity_id:
+      data:
+        entity_id:
         - scene.table_full_on
 #######################################################
 # Light automations
@@ -50,9 +54,10 @@
     state: 'on'
   action:
     - service: script.turn_on
-      entity_id: 
-      - script.living_default_on
-      - script.bar_on
+      data:
+        entity_id: 
+        - script.living_default_on
+        - script.bar_on
 - id: all_off_but_table
   alias: all lights except table lights off at sunrise
   trigger:
@@ -60,7 +65,8 @@
     event: sunrise
   action:
     - service: light.turn_off
-      entity_id:
+      data:
+        entity_id:
         - group.bar
         - group.living
 # - alias: Set stalamp when triggered on
@@ -154,7 +160,8 @@
       to: 'home'
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.away
+      data:
+        entity_id: input_boolean.away
       
 #######################################################
 # Shades
@@ -171,7 +178,8 @@
     after: '8:00:00'
   action:
     service: scene.turn_on
-    entity_id: scene.64040
+    data:
+      entity_id: scene.64040
 - id: shade_2
   alias: put the shade in privacy mode at a certain time
   trigger:
@@ -186,7 +194,8 @@
   #   before_offset: '1:00:00'
   action:
     service: scene.turn_on
-    entity_id: scene.34037
+    data:
+      entity_id: scene.34037
 - id: id_shade_3
   alias: Put the shade in night mode when completely dark
   trigger:
@@ -195,7 +204,8 @@
       offset: '1:00:00'
   action:
     service: scene.turn_on
-    entity_id: scene.53808
+    data:
+      entity_id: scene.53808
 #######################################################
 # Away modes
 #######################################################
@@ -216,7 +226,8 @@
         before: '21:00:00'
   action:
     - service: scene.turn_on
-      entity_id:
+      data:
+        entity_id:
         - scene.table_on
 - id: id_away_2
   alias: shade down at timeschedule
@@ -229,7 +240,8 @@
     state: 'on'
   action:
     - service: scene.turn_on
-      entity_id: scene.49867
+      data:
+        entity_id: scene.49867
 - id: id_away_3
   alias: all lights off at timeschedule
   trigger:
@@ -241,7 +253,8 @@
     state: 'on'
   action:
     - service: script.turn_on
-      entity_id: script.all_off
+      data:
+        entity_id: script.all_off
     
 
 #######################################################
@@ -267,7 +280,8 @@
       command: '/awayoff'
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.away
+      data:
+        entity_id: input_boolean.away
 - id: id_bot2
   alias: bot away mode on command
   trigger:
@@ -277,7 +291,8 @@
       command: '/awayon'
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.away
+      data:
+        entity_id: input_boolean.away
 # switches on away mode from incoming telegram message.
 - id: id_bot3
   alias: bot away set on
@@ -292,7 +307,8 @@
         callback_query_id: '{{ trigger.event.data.id }}'
         message: "Away on triggered"
     - service: input_boolean.turn_on
-      entity_id: input_boolean.away
+      data:
+        entity_id: input_boolean.away
 - id: id_bot_4
   alias: bot away set off
   trigger:
@@ -306,4 +322,11 @@
         callback_query_id: '{{ trigger.event.data.id }}'
         message: "Away off triggered"
     - service: input_boolean.turn_off
-      entity_id: input_boolean.away
+      data:
+        entity_id: input_boolean.away
+
+      # action:
+      # - data:
+      #     entity_id: scene.53808
+      #   entity_id: scene.53808
+      #   service: scene.turn_on
