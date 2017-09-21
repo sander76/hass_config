@@ -61,7 +61,7 @@ bar_on:
   - service: light.turn_on
     entity_id: light.barlamp
     data:
-      xy_color: [0.5134,0.4149]
+      color_temp: 442
       brightness: 150
 living_default_on:
   alias: Easy lighting.
