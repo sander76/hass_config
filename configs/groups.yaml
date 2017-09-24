@@ -55,4 +55,7 @@ bar:
   name: The bar
   entities:
     - light.barlamp
-  
+room_bo:
+  name: Room Bo
+  entities:
+    - light.hue_color_light_1

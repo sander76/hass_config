@@ -330,3 +330,34 @@
       #     entity_id: scene.53808
       #   entity_id: scene.53808
       #   service: scene.turn_on
+- id: id_morning_light_bo_1
+  alias: activate on weekdays
+  trigger:
+    platform: time
+    at: '6:30:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: script.turn_on
+    data:
+      entity_id: script.morning_light_bo
+- id: id_morning_light_bo_2
+  alias: activate on weekends
+  trigger:
+    platform: time
+    at: '7:00:00'
+  condition:
+    condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+    service: script.turn_on
+    data:
+      entity_id: script.morning_light_bo
