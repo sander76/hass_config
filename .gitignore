@@ -9,3 +9,4 @@ secrets.yaml
 script.py
 .idea
 *.pyc
+phue.conf

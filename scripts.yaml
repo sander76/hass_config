@@ -94,3 +94,6 @@ morning_light_bo:
       data:
         xy_color: [0.136,0.04]
         brightness: 1
+    - delay: 01:00
+      service: light.turn_off
+      entity_id: light.hue_color_light_1
