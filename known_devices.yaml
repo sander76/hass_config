@@ -150,3 +150,48 @@ f81edfe5df05:
   picture:
   track: true
   vendor: Murata Manufacturing Co., Ltd.
+
+746ff74ea60a:
+  hide_if_away: false
+  icon:
+  mac: 74:6F:F7:4E:A6:0A
+  name: 746ff74ea60a
+  picture:
+  track: true
+  vendor: Wistron Neweb Corporation
+
+30b5c2c69adc:
+  hide_if_away: false
+  icon:
+  mac: 30:B5:C2:C6:9A:DC
+  name: 30b5c2c69adc
+  picture:
+  track: true
+  vendor: TP-LINK TECHNOLOGIES CO.,LTD.
+
+ec9bf390a627:
+  hide_if_away: false
+  icon:
+  mac: EC:9B:F3:90:A6:27
+  name: ec9bf390a627
+  picture:
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+a0afbdf0d7af:
+  hide_if_away: false
+  icon:
+  mac: A0:AF:BD:F0:D7:AF
+  name: a0afbdf0d7af
+  picture:
+  track: true
+  vendor: Intel Corporate
+
+b4d5bd1ba341:
+  hide_if_away: false
+  icon:
+  mac: B4:D5:BD:1B:A3:41
+  name: b4d5bd1ba341
+  picture:
+  track: true
+  vendor: Intel Corporate
