@@ -59,4 +59,4 @@ bar:
 room_bo:
   name: Room Bo
   entities:
-    - light.hue_color_light_1
+    - light.lamp_bo

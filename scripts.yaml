@@ -84,16 +84,16 @@ morning_light_bo:
   alias: Morning light Bo on.
   sequence:
     - service: light.turn_on
-      entity_id: light.hue_color_light_1
+      entity_id: light.lamp_bo
       data:
         xy_color: [0.409,0.518]
         brightness: 1
     - delay: 00:30
     - service: light.turn_on
-      entity_id: light.hue_color_light_1
+      entity_id: light.lamp_bo
       data:
         xy_color: [0.136,0.04]
         brightness: 1
     - delay: 01:00
     - service: light.turn_off
-      entity_id: light.hue_color_light_1
+      entity_id: light.lamp_bo
