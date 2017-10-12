@@ -41,7 +41,8 @@ light:
   host: 192.168.2.1
 
 recorder:
-  purge_days: 2
+  purge_keep_days: 3
+  purge_interval: 2
   exclude:
     entities:
       - sensor.light_lux_sensor_2_0
@@ -64,6 +65,9 @@ updater:
 # Enables the frontend
 frontend:
 
+# View all events in a logbook
+logbook:
+
 # Enables support for tracking state changes over time.
 history:
 
@@ -72,9 +76,6 @@ history:
 
 # Track the sun
 sun:
-
-# View all events in a logbook
-logbook:
 
 config:
 

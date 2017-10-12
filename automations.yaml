@@ -188,10 +188,10 @@
     - platform: sun
       event: sunset
       offset: '-1:00:00'
-  # condition: I don't understand this condition
-  #   condition: sun
-  #   before: sunset
-  #   before_offset: '1:00:00'
+  condition:
+    condition: sun
+    before: sunset
+    before_offset: '1:00:00'
   action:
     service: scene.turn_on
     data:
