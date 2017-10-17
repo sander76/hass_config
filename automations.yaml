@@ -203,9 +203,16 @@
       event: sunset
       offset: '1:00:00'
   action:
-    service: scene.turn_on
-    data:
-      entity_id: scene.53808
+    - service: scene.turn_on
+      data:
+        entity_id: scene.53808
+    - condition: state
+      entity_id: binary_sensor.window__door_contact
+      state: 'off'
+    - serivce: scene.turn_on
+      data:
+        entity_id: scene.49867
+
 #######################################################
 # Away modes
 #######################################################

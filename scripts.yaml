@@ -18,7 +18,7 @@ blind_scene_at_time:
   alias: Activate a blind scene depending on time.
   sequence:
     - condition: time
-      after: '7:00:00'
+      after: '6:30:00'
       before: '8:00:00'
     - service: scene.turn_on
       entity_id: scene.34037  #blinds semi close
