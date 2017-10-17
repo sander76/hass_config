@@ -13,6 +13,8 @@ default_view:
     - device_tracker.c0eefbf28296
     - group.batteries
     - climate.huiskamer
+    - binary_sensor.window__door_contact
+    - switch.pluggable_switch_and_meter
     # - media_player.pantercast
 batteries:
   name: Batteries
