@@ -12,7 +12,7 @@ from homeassistant.components.binary_sensor import BinarySensorDevice, \
 
 import homematicip
 
-from homematic_ip import HmipGenericDevice, ATTR_HMIP_HOME
+from custom_components.homematic_ip import HmipGenericDevice, ATTR_HMIP_HOME
 
 _LOGGER = logging.getLogger(__name__)
 

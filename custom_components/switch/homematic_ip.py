@@ -8,7 +8,7 @@ import logging
 
 from homeassistant.components.switch import SwitchDevice
 from homematicip.async.device import PlugableSwitchMeasuring, PlugableSwitch
-from homematic_ip import ATTR_HMIP_HOME, HmipGenericDevice
+from custom_components.homematic_ip import ATTR_HMIP_HOME, HmipGenericDevice
 
 _LOGGER = logging.getLogger(__name__)
 
