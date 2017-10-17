@@ -209,7 +209,7 @@
     - condition: state
       entity_id: binary_sensor.window__door_contact
       state: 'off'
-    - serivce: scene.turn_on
+    - service: scene.turn_on
       data:
         entity_id: scene.49867
 
