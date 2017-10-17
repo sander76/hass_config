@@ -110,6 +110,9 @@ notify:
   chat_id: !secret telegram_chat_id
 
 
+homematic_ip:
+  authtoken: !secret hmip_auth_token
+  accesspoint: !secret hmip_auth_access_point
 
 device_tracker:
   - platform: ddwrt
