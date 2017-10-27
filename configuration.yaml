@@ -28,6 +28,10 @@ homeassistant:
     script.living_default_on:
       icon: mdi:brightness-6
 
+logger:
+  default: warn
+  logs:
+    custom_components.homematic_ip: error
     
 # media_player:
 #   - platform: cast
