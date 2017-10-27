@@ -32,6 +32,7 @@ logger:
   default: warn
   logs:
     custom_components.homematic_ip: error
+    homematicip: error
     
 # media_player:
 #   - platform: cast
