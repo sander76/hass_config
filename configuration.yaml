@@ -28,6 +28,9 @@ homeassistant:
     script.living_default_on:
       icon: mdi:brightness-6
 
+frontend:
+  javascript_version: latest
+
 logger:
   default: warn
   logs:
